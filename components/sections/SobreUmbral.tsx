@@ -317,7 +317,7 @@ export default function SobreUmbral() {
             viewport={{ once: false, margin: "-80px" }}
             className="bg-rosa/15 rounded-l-[80px] md:rounded-l-[160px] rounded-r-none ml-6 md:ml-12 py-10 md:py-16"
           >
-            <div className="flex flex-col items-center gap-0 max-w-4xl mx-auto px-6">
+            <div className="flex flex-col items-center gap-0 max-w-[820px] mx-auto px-6">
               {MANIFIESTO_LINES.map((line, i) =>
                 line === "" ? (
                   <div key={`spacer-${i}`} className="h-6" />
