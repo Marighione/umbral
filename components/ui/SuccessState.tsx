@@ -86,7 +86,7 @@ export function SuccessState({ icon = "check", title, subtitle, children }: Succ
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
-          className="text-[16px] md:text-[17px] text-text-muted mt-1 max-w-[400px] leading-relaxed"
+          className="text-[16px] md:text-[17px] text-text-muted mt-1 max-w-[400px] leading-relaxed whitespace-pre-line"
         >
           {subtitle}
         </motion.p>

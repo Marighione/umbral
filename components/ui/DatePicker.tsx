@@ -109,7 +109,7 @@ export function DatePicker({ value, onChange, onBlur, error, allowedDays = [0, 4
         type="button"
         onClick={() => setOpen(!open)}
         className={cn(
-          "w-full bg-white border-[1.5px] rounded-[var(--radius-md)] px-4 py-3 font-body text-[16px] text-left transition-all duration-200 outline-none flex items-center justify-between",
+          "w-full bg-white border-[1.5px] rounded-[var(--radius-md)] px-4 py-3 h-[50px] font-body text-[16px] text-left transition-all duration-200 outline-none flex items-center justify-between",
           error
             ? "border-[#E24B4A] focus:border-[#E24B4A] focus:shadow-[0_0_0_3px_rgba(226,75,74,0.12)]"
             : open

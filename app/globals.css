@@ -22,7 +22,7 @@
 
   /* Tipografía */
   --font-display:       'DM Serif Display', serif;
-  --font-body:          'DM Sans', sans-serif;
+  --font-body:          'Myriad Pro', 'Myriad', system-ui, sans-serif;
 
   /* Espaciado base */
   --section-padding-y:  5rem;
@@ -46,4 +46,12 @@ body {
 h1, h2, h3 {
   font-family: var(--font-display);
   line-height: 1.15;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

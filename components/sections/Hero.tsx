@@ -25,6 +25,7 @@ export default function Hero() {
       {/* Overlay para legibilidad */}
       <div className="absolute inset-0 bg-white/70" />
 
+
       {/* Contenido — debajo del logo grande */}
       <div className="relative z-10 flex flex-col items-center mt-32 md:mt-36">
         {/* H1 */}

@@ -6,8 +6,6 @@ import { FormField } from "@/components/ui/FormField";
 import { Button } from "@/components/ui/Button";
 import { SuccessState } from "@/components/ui/SuccessState";
 import { useReserva } from "@/hooks/useReserva";
-import type { ComoNosConociste } from "@/lib/types";
-import { cn } from "@/lib/cn";
 
 const HORARIOS = [
   { value: "17:00", label: "17:00" },
@@ -15,10 +13,7 @@ const HORARIOS = [
   { value: "21:00", label: "21:00" },
 ];
 
-const COMO_NOS_CONOCISTE: Array<{
-  value: ComoNosConociste;
-  label: string;
-}> = [
+const COMO_NOS_CONOCISTE = [
   { value: "instagram", label: "Instagram" },
   { value: "amigo", label: "Me lo recomendó alguien" },
   { value: "flyer", label: "Vi un flyer" },
@@ -41,16 +36,12 @@ function formatFecha(fecha: string): string {
 export default function Reservas() {
   const {
     estado,
-    setEstado,
     form,
     errors,
     loading,
-    encuesta,
     updateField,
     handleBlur,
     handleSubmit,
-    handleEncuesta,
-    handleConfirmarEncuesta,
     handleReset,
   } = useReserva();
 
@@ -163,6 +154,18 @@ export default function Reservas() {
                   error={errors.personas}
                   required
                 />
+                <FormField
+                  label="¿Cómo nos conociste?"
+                  name="comoNosConociste"
+                  type="select"
+                  placeholder="Seleccioná una opción"
+                  options={COMO_NOS_CONOCISTE}
+                  value={form.comoNosConociste}
+                  onChange={(v) => updateField("comoNosConociste", v)}
+                  onBlur={() => handleBlur("comoNosConociste")}
+                  error={errors.comoNosConociste}
+                  required
+                />
                 <div className="pt-2">
                   <Button
                     type="submit"
@@ -185,71 +188,7 @@ export default function Reservas() {
                 <SuccessState
                   icon="check"
                   title="¡Reserva confirmada!"
-                  subtitle={`${form.nombre}, te esperamos el ${formatFecha(form.fecha)} a las ${form.horario}. Llevá ropa cómoda y ganas de explorar.`}
-                >
-                  <Button
-                    variant="secondary"
-                    onClick={() => setEstado("encuesta")}
-                  >
-                    Continuar
-                  </Button>
-                </SuccessState>
-              </motion.div>
-            )}
-
-            {/* Estado 3: Encuesta */}
-            {estado === "encuesta" && (
-              <motion.div
-                key="encuesta"
-                {...transition}
-                className="flex flex-col items-center gap-6 py-8"
-              >
-                <div>
-                  <h3 className="font-display text-[24px] md:text-display-md text-text-base">
-                    Una última pregunta:
-                  </h3>
-                  <p className="mt-2 text-[15px] md:text-[16px] text-text-muted">
-                    ¿Cómo nos conociste?
-                  </p>
-                </div>
-                <div className="w-full flex flex-col gap-3">
-                  {COMO_NOS_CONOCISTE.map((opcion) => (
-                    <button
-                      key={opcion.value}
-                      type="button"
-                      onClick={() => handleEncuesta(opcion.value)}
-                      className={cn(
-                        "w-full px-5 py-3.5 rounded-xl border-[1.5px] text-[15px] md:text-[16px] font-medium transition-all duration-200 text-left",
-                        encuesta === opcion.value
-                          ? "border-coral bg-coral-light text-coral"
-                          : "border-border-base bg-white text-text-base hover:border-coral/40"
-                      )}
-                    >
-                      {opcion.label}
-                    </button>
-                  ))}
-                </div>
-                <Button
-                  variant="primary"
-                  fullWidth
-                  disabled={!encuesta}
-                  onClick={handleConfirmarEncuesta}
-                >
-                  Listo
-                </Button>
-              </motion.div>
-            )}
-
-            {/* Estado 4: Cierre */}
-            {estado === "cierre" && (
-              <motion.div
-                key="cierre"
-                {...transition}
-              >
-                <SuccessState
-                  icon="heart"
-                  title="¡Gracias! Nos ayuda mucho saberlo."
-                  subtitle="Nos vemos pronto en Umbral."
+                  subtitle={`${form.nombre}, te esperamos el ${formatFecha(form.fecha)} a las ${form.horario}.\nLlevá ropa cómoda y ganas de explorar.`}
                 >
                   <Button variant="secondary" onClick={handleReset}>
                     Hacer otra reserva

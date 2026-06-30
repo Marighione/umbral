@@ -20,7 +20,7 @@ interface FormFieldProps {
 }
 
 const inputClasses =
-  "w-full bg-white border-[1.5px] border-border-base rounded-[var(--radius-md)] px-4 py-3 font-body text-[16px] text-text-base placeholder:text-text-muted transition-all duration-200 outline-none focus:border-coral focus:shadow-[0_0_0_3px_rgba(253,108,79,0.12)]";
+  "w-full bg-white border-[1.5px] border-border-base rounded-[var(--radius-md)] px-4 py-3 h-[50px] font-body text-[16px] text-text-base placeholder:text-text-muted transition-all duration-200 outline-none focus:border-coral focus:shadow-[0_0_0_3px_rgba(253,108,79,0.12)]";
 
 const errorInputClasses = "border-[#E24B4A] focus:border-[#E24B4A] focus:shadow-[0_0_0_3px_rgba(226,75,74,0.12)]";
 
@@ -81,7 +81,7 @@ export function FormField({
           onBlur={onBlur}
           placeholder={placeholder}
           rows={rows}
-          className={cn(fieldClasses, "resize-y")}
+          className={cn(fieldClasses, "resize-y h-auto")}
         />
       ) : (
         <input

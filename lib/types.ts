@@ -41,9 +41,7 @@ export type TipoInstitucion =
 
 export type EstadoReserva =
   | "formulario"
-  | "confirmacion"
-  | "encuesta"
-  | "cierre";
+  | "confirmacion";
 
 export interface DatoClave {
   label: string;

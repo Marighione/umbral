@@ -5,7 +5,6 @@ import Image from "next/image";
 import { experienciaActual } from "@/lib/experiencia-actual";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { Tag } from "@/components/ui/Tag";
-import { RecorridoCarousel } from "@/components/ui/RecorridoCarousel";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 24 },
@@ -17,7 +16,7 @@ const fadeInUp = {
 };
 
 export default function Experiencia() {
-  const { tag, nombre, descripcion, datosClave, fases } = experienciaActual;
+  const { tag, nombre, descripcion, datosClave } = experienciaActual;
 
   return (
     <SectionWrapper id="experiencia">
@@ -110,20 +109,6 @@ export default function Experiencia() {
         ))}
       </motion.div>
 
-      {/* Parte 2: Fases del recorrido */}
-      <motion.div
-        variants={fadeInUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false }}
-        className="mt-14 md:mt-16"
-      >
-        <h3 className="font-display text-[24px] md:text-display-md text-text-base mb-8">
-          El recorrido
-        </h3>
-
-        <RecorridoCarousel fases={fases} />
-      </motion.div>
     </SectionWrapper>
   );
 }

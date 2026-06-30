@@ -11,6 +11,7 @@ export interface ReservaFormState {
   fecha: string;
   horario: string;
   personas: string;
+  comoNosConociste: string;
 }
 
 export interface ReservaFormErrors {
@@ -20,6 +21,7 @@ export interface ReservaFormErrors {
   fecha?: string;
   horario?: string;
   personas?: string;
+  comoNosConociste?: string;
 }
 
 const initialForm: ReservaFormState = {
@@ -29,6 +31,7 @@ const initialForm: ReservaFormState = {
   fecha: "",
   horario: "",
   personas: "",
+  comoNosConociste: "",
 };
 
 function validate(form: ReservaFormState): ReservaFormErrors {
@@ -52,6 +55,9 @@ function validate(form: ReservaFormState): ReservaFormErrors {
   const personas = parseInt(form.personas);
   if (!form.personas || isNaN(personas) || personas < 1 || personas > 12)
     errors.personas = "Ingresá entre 1 y 12 personas";
+
+  if (!form.comoNosConociste)
+    errors.comoNosConociste = "Seleccioná una opción";
 
   return errors;
 }
@@ -100,7 +106,6 @@ export function useReserva() {
   const [form, setForm] = useState<ReservaFormState>(initialForm);
   const [errors, setErrors] = useState<ReservaFormErrors>({});
   const [loading, setLoading] = useState(false);
-  const [encuesta, setEncuesta] = useState<ComoNosConociste | null>(null);
   const [reservaId, setReservaId] = useState<string>("");
 
   const updateField = useCallback(
@@ -130,25 +135,15 @@ export function useReserva() {
 
     setLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 800));
+    const id = guardarReserva(form, form.comoNosConociste as ComoNosConociste);
+    setReservaId(id);
     setLoading(false);
     setEstado("confirmacion");
   }, [form]);
 
-  const handleEncuesta = useCallback((valor: ComoNosConociste) => {
-    setEncuesta(valor);
-  }, []);
-
-  const handleConfirmarEncuesta = useCallback(() => {
-    if (!encuesta) return;
-    const id = guardarReserva(form, encuesta);
-    setReservaId(id);
-    setEstado("cierre");
-  }, [encuesta, form]);
-
   const handleReset = useCallback(() => {
     setForm(initialForm);
     setErrors({});
-    setEncuesta(null);
     setReservaId("");
     setEstado("formulario");
   }, []);
@@ -159,13 +154,10 @@ export function useReserva() {
     form,
     errors,
     loading,
-    encuesta,
     reservaId,
     updateField,
     handleBlur,
     handleSubmit,
-    handleEncuesta,
-    handleConfirmarEncuesta,
     handleReset,
   };
 }
