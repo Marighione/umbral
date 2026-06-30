@@ -2,9 +2,6 @@
 
 import Image from "next/image";
 
-const WA_NUMBER = "54911152380950";
-const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Hola! Quiero consultar sobre Umbral")}`;
-
 export default function Footer() {
   return (
     <footer className="bg-[#507F79] text-white">
