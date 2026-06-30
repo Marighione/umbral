@@ -170,7 +170,7 @@ export default function SobreUmbral() {
         {/* Recurso-4 (arco) decorativo detrás */}
         <motion.div
           style={{ y: misionRecursoY }}
-          className="absolute right-[-60px] md:right-[5%] top-1/2 -translate-y-1/2 w-[180px] md:w-[260px] lg:w-[320px] opacity-[0.07] pointer-events-none select-none"
+          className="absolute right-[-60px] md:right-[5%] top-1/2 -translate-y-1/2 w-[180px] md:w-[260px] lg:w-[320px] opacity-[0.18] pointer-events-none select-none"
           aria-hidden="true"
         >
           <Image
@@ -225,7 +225,7 @@ export default function SobreUmbral() {
       </div>
 
       {/* ─── Bloque 3: Valores ─── */}
-      <div className="relative bg-bg-alt overflow-hidden">
+      <div className="relative bg-bg-alt overflow-visible">
         {/* Recurso-3 decorativo — flip horizontal, curva hacia el centro */}
         <div
           className="absolute -left-8 md:left-0 bottom-[-20px] w-[300px] md:w-[420px] opacity-[0.14] pointer-events-none select-none scale-x-[-1]"
@@ -309,15 +309,15 @@ export default function SobreUmbral() {
 
       {/* ─── Manifiesto ─── */}
       <div className="bg-white">
-        <div className="max-w-container mx-auto px-6 py-16 md:py-24">
+        <div className="py-16 md:py-24">
           <motion.div
             variants={containerStagger}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, margin: "-80px" }}
-            className="bg-bg-alt rounded-2xl p-8 md:p-14 border border-border-base"
+            className="bg-rosa/15 rounded-l-[80px] md:rounded-l-[160px] rounded-r-none ml-6 md:ml-12 py-10 md:py-16"
           >
-            <div className="flex flex-col items-center gap-0 max-w-4xl mx-auto">
+            <div className="flex flex-col items-center gap-0 max-w-4xl mx-auto px-6">
               {MANIFIESTO_LINES.map((line, i) =>
                 line === "" ? (
                   <div key={`spacer-${i}`} className="h-6" />
@@ -326,7 +326,7 @@ export default function SobreUmbral() {
                     key={i}
                     custom={i}
                     variants={lineReveal}
-                    className="font-body text-[20px] md:text-[26px] text-coral text-center leading-relaxed font-medium"
+                    className="font-body text-[18px] md:text-[24px] text-text-base text-center leading-relaxed font-normal"
                   >
                     {line}
                   </motion.p>
